@@ -2,6 +2,7 @@ import {TabType} from './tabType';
 import {Image} from './image';
 
 export class Page {
+  public id: string;
   public type: TabType;
   public title: string;
   public subtitle: string;
@@ -11,8 +12,10 @@ export class Page {
     type: TabType,
     title: string,
     subtitle: string,
-    images: Array<Image>
+    images: Array<Image>,
+    id?: string
   ) {
+    this.id = id;
     this.type = type;
     this.title = title;
     this.subtitle = subtitle;
