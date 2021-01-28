@@ -1,5 +1,5 @@
-import {Page} from '../models/page';
-import {getRepository} from 'fireorm';
+import {Page} from "../models/page";
+import {getRepository} from "fireorm";
 
 export async function getAllPages(): Promise<Array<Page>> {
     const pagesRepository = getRepository(Page);

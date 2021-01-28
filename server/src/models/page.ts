@@ -1,9 +1,9 @@
-import {Collection} from 'fireorm';
-import {IsEnum, IsString, ValidateNested} from 'class-validator';
-import {Image} from '../../../../client/src/app/shared/models/image';
-import {TabType} from './tabType';
+import {Collection} from "fireorm";
+import {IsEnum, IsString, ValidateNested} from "class-validator";
+import {Image} from "../../../client/src/app/shared/models/image";
+import {TabType} from "./tabType";
 
-@Collection('pages')
+@Collection("pages")
 export class Page {
 
     @IsString()
