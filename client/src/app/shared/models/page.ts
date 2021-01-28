@@ -15,7 +15,7 @@ export class Page {
     images: Array<Image>,
     id?: string
   ) {
-    this.id = id;
+    if (id) { this.id = id; };
     this.type = type;
     this.title = title;
     this.subtitle = subtitle;

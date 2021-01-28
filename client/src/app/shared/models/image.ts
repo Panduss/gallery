@@ -3,7 +3,7 @@ export class Image {
   url: string;
 
   public constructor(url: string, id?: string) {
-    this.id = id;
+    if (id) { this.id = id; }
     this.url = url;
   }
 }
