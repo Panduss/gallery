@@ -4,6 +4,7 @@
   "description": "simple api for the gallery",
   "main": "src/index.ts",
   "scripts": {
+    "watch": "env ENV=dev nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server.ts",
     "test": "test"
   },
   "author": "",
@@ -16,6 +17,7 @@
     "firebase": "^8.2.4",
     "firebase-admin": "^9.4.2",
     "fireorm": "^0.19.0",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^9.1.1",

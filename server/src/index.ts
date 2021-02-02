@@ -1,10 +1,10 @@
 import {Page} from "./models/page";
 import {getAllPages} from "./providers/pages";
 
-interface WebApiInterface {
+interface PagesApiInterface {
     getAllPages: () => Promise<Array<Page>>;
 };
 
-export const WebApi: WebApiInterface = {
+export const PagesApi: PagesApiInterface = {
     getAllPages: getAllPages
 };
