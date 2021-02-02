@@ -4,17 +4,18 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import admin from "firebase-admin";
 import firebase from "firebase";
-import fireorm from "fireorm";
+import * as fireorm from "fireorm";
 import cors from "cors";
-import {WebApi} from "./index";
+import {PagesApi} from "./index";
 import {Page} from "./models/page";
+import credentials from "./firebaseCred";
 
-admin.initializeApp({
-    credential: admin.credential.cert(JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii"))),
-    storageBucket: process.env.STORAGE_BUCKET
+export const firebaseAdmin = admin.initializeApp({
+    credential: admin.credential.cert(process.env.ENV === 'dev' ? credentials.SERVICE_ACCOUNT : JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii"))),
+    storageBucket: process.env.ENV === 'dev' ? credentials.STORAGE_BUCKET : process.env.STORAGE_BUCKET
 });
 
-firebase.initializeApp(JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
+firebase.initializeApp(process.env.ENV === 'dev' ? credentials.FIREBASE_CONFIG : JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
 fireorm.initialize(admin.firestore());
 
 const app = express();
@@ -41,7 +42,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get("/pages", (req: Request, res: Response, next: NextFunction) => {
-    WebApi.getAllPages()
+    PagesApi.getAllPages()
         .then((result: Array<Page>) => res.status(200).send(result))
         .catch(next);
 });
