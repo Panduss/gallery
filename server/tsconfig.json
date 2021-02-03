@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "outDir": "./build",
     "sourceMap": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
