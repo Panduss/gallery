@@ -19,7 +19,7 @@ firebase.initializeApp(process.env.ENV === 'dev' ? credentials.FIREBASE_CONFIG :
 fireorm.initialize(admin.firestore());
 
 const app = express();
-const port = "8080";
+const PORT = process.env.PORT || 5000
 
 const whitelist = [
     "http://localhost:4000"
@@ -52,6 +52,6 @@ app.use((error: any, req: Request, res: Response) => {
     return res.json(error).send();
 });
 
-app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Server started at http://localhost:${PORT}`);
 });
