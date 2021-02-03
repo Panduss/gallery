@@ -13,7 +13,7 @@ const serviceAccount = JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base
 console.log('whattheheck', serviceAccount);
 
 export const firebaseAdmin = admin.initializeApp({
-    credential: serviceAccount,
+    credential: serviceAccount as admin.ServiceAccount,
     storageBucket: process.env.STORAGE_BUCKET
 });
 
