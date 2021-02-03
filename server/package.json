@@ -4,8 +4,9 @@
   "description": "simple api for the gallery",
   "main": "src/index.ts",
   "scripts": {
-    "start": "node dist/server.js",
-    "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
+    "start": "node build/server.js",
+    "build": "tsc",
+    "postinstall": "npm run build",
     "watch": "env ENV=dev nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server.ts",
     "test": "test"
   },
