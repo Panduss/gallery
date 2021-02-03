@@ -9,6 +9,7 @@
     "watch": "env ENV=dev nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server.ts",
     "test": "test"
   },
+  "engines": { "node": "13.12.0" },
   "author": "",
   "license": "ISC",
   "dependencies": {
