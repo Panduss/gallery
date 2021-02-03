@@ -8,14 +8,13 @@ import * as fireorm from "fireorm";
 import cors from "cors";
 import {PagesApi} from "./index";
 import {Page} from "./models/page";
-import credentials from "./firebaseCred";
 
 export const firebaseAdmin = admin.initializeApp({
-    credential: admin.credential.cert(process.env.ENV === 'dev' ? credentials.SERVICE_ACCOUNT : JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii"))),
-    storageBucket: process.env.ENV === 'dev' ? credentials.STORAGE_BUCKET : process.env.STORAGE_BUCKET
+    credential: admin.credential.cert(JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii")) as admin.ServiceAccount),
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
 });
 
-firebase.initializeApp(process.env.ENV === 'dev' ? credentials.FIREBASE_CONFIG : JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
+firebase.initializeApp(JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
 fireorm.initialize(admin.firestore());
 
 const app = express();
