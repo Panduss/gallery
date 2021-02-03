@@ -9,8 +9,11 @@ import cors from "cors";
 import {PagesApi} from "./index";
 import {Page} from "./models/page";
 
+const serviceAccount = JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii"));
+console.log('whattheheck', serviceAccount);
+
 export const firebaseAdmin = admin.initializeApp({
-    credential: JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii")),
+    credential: serviceAccount,
     storageBucket: process.env.STORAGE_BUCKET
 });
 
