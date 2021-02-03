@@ -9,12 +9,9 @@ import cors from "cors";
 import {PagesApi} from "./index";
 import {Page} from "./models/page";
 
-const serviceAccount = JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii"));
-console.log('whattheheck', serviceAccount);
-
 export const firebaseAdmin = admin.initializeApp({
-    credential: serviceAccount as admin.ServiceAccount,
-    storageBucket: process.env.STORAGE_BUCKET
+    credential: admin.credential.cert(JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii")) as admin.ServiceAccount),
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
 });
 
 firebase.initializeApp(JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
