@@ -6,15 +6,14 @@ import admin from "firebase-admin";
 import firebase from "firebase";
 import * as fireorm from "fireorm";
 import cors from "cors";
-import {PagesApi} from "./index";
-import {Page} from "./models/page";
+import routes from "./routes";
 
-export const firebaseAdmin = admin.initializeApp({
+export const fbAdmin = admin.initializeApp({
     credential: admin.credential.cert(JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii")) as admin.ServiceAccount),
     databaseURL: process.env.FIREBASE_DATABASE_URL,
 });
 
-firebase.initializeApp(JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
+export const fb = firebase.initializeApp(JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
 fireorm.initialize(admin.firestore());
 
 const app = express();
@@ -39,16 +38,14 @@ app.use(morgan(morgan.compile("[:date[web]] :method :url :status (millis :respon
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
-app.get("/pages", (req: Request, res: Response, next: NextFunction) => {
-    PagesApi.getAllPages()
-        .then((result: Array<Page>) => res.status(200).send(result))
-        .catch(next);
-});
-
-app.use((error: any, req: Request, res: Response) => {
-    console.log("Error => ", error);
-    return res.json(error).send();
+app.use('/', routes);
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+    res.status(error.status || 500).send({
+        error: {
+            status: error.status || 500,
+            message: error.message || 'Internal Server Error'
+        }
+    });
 });
 
 app.listen(PORT, () => {

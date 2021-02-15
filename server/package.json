@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "simple api for the gallery",
-  "main": "src/index.ts",
+  "main": "dist/server.js",
   "scripts": {
     "start": "node build/server.js",
     "build": "tsc",
