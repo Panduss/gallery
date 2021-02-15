@@ -40,8 +40,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', routes);
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-    console.log('Error => ', error);
-    return res.status(500).send(error);
+    res.status(error.status || 500).send({
+        error: {
+            status: error.status || 500,
+            message: error.message || 'Internal Server Error'
+        }
+    });
 });
 
 app.listen(PORT, () => {
