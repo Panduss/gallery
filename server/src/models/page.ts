@@ -9,7 +9,7 @@ export class Page {
     @IsString()
     public id: string;
 
-    @IsEnum(TabType)
+    @IsEnum(TabType, )
     public type: TabType;
 
     @IsString()

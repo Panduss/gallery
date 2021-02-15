@@ -1,17 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
-import {firebaseAdmin} from "../server";
+import {fbAdmin} from "../server";
 
 export async function authorize(req: Request, res: Response, next: NextFunction) {
     let token = req.headers.authorization;
 
     if (!token) {
-        return res.status(401).send({ message: 'Missing token' });
+        return res.status(401).send({ message: 'No token provided!' });
     }
-    try {
-        let decodedToken = await firebaseAdmin.auth().verifyIdToken(token, true);
-        req.body ? req.body.claims = decodedToken : req.body = { claims: decodedToken };
-        next();
-    } catch(e) {
-        return res.status(403).send({ message: 'Token invalid' });
-    }
+
+    fbAdmin.auth().verifyIdToken(token, true).then((claims) => {
+        req.body ? req.body.claims = claims : req.body = { claims: claims };
+        return next();
+    }).catch((error) => {
+        return res.status(401).json({ error: error.message });
+    })
 }
