@@ -11,7 +11,6 @@ export async function login(email: string, password: string): Promise<AuthUser> 
         throw new Error('Password is required!');
     }
 
-    console.log('email: ' + email + ' password: ' + password);
     email = email.toLowerCase();
 
     let credentials = await fb.auth().signInWithEmailAndPassword(email, password);
