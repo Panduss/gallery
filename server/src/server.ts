@@ -73,8 +73,8 @@ app.post("/pages/:id", authorize, (req: Request, res: Response, next:NextFunctio
 })
 
 app.use((error: any, req: Request, res: Response) => {
-    console.log("Error => ", error);
-    return res.send(error);
+    console.error(error.stack);
+    res.status(500).send(error);
 });
 
 app.listen(PORT, () => {
