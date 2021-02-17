@@ -17,8 +17,8 @@ export class TabService {
     // this.getPages();
   }
 
-  public getPages(): Observable<Array<TabService>> {
-    return this.http.get<Array<TabService>>(environment.api + "pages/");
+  public getPages(): Observable<Array<Tab>> {
+    return this.http.get<Array<Tab>>(environment.api + "pages/");
       // .pipe(
       //   skipWhile(u => {
       //     console.log("u", u);
