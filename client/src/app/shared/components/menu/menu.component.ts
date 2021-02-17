@@ -1,19 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {NavigationEnd, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.html',
-  styleUrls: ['./menu.scss']
+  selector: "app-menu",
+  templateUrl: "./menu.component.html",
+  styleUrls: ["./menu.component.scss"]
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
   public selectedPath?: string;
+  public pages = [];
   private routeSubscription: Subscription = new Subscription();
-
-  public pages = [
-  ];
 
   public constructor(
     private router: Router

@@ -20,7 +20,7 @@ const app = express();
 const PORT = process.env.PORT || 5000
 
 const whitelist = [
-    "http://localhost:4000"
+    "http://localhost:4200"
 ];
 
 const corsOptions = {
