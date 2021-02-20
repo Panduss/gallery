@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
-import {TabService} from "../../../../services/tab.service";
 import {Tab} from "../../../../models/tab.model";
+import {Router} from "@angular/router";
+import {TabService} from "../../../../services/tab.service";
 
 @Component({
   selector: "app-home",
@@ -12,12 +13,11 @@ export class HomeComponent {
   public tabs: Array<Tab> = [];
 
   public constructor(
+    private router: Router,
     private tabService: TabService
   ) {
-    this.tabService.getPages()
-      .subscribe((tabs: Array<Tab>) => {
-        console.log("TABS => ", tabs);
-        this.tabs = tabs;
-      });
+    this.tabService.tabs$.subscribe((tabs: Array<Tab>) => {
+      this.tabs = tabs;
+    });
   }
 }

@@ -2,29 +2,40 @@ import {Injectable} from "@angular/core";
 import {Tab} from "../models/tab.model";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class TabService {
 
-  // public tabs: Array<TabService> = [];
+  public tabs: BehaviorSubject<Array<Tab>> = new BehaviorSubject(null);
+  public tabs$: Observable<Array<Tab>> = this.tabs.asObservable();
 
   public constructor(
     private http: HttpClient
   ) {
-    // this.getPages();
+    this.getPages().subscribe(
+      (tabs) => {
+        this.tabs.next(tabs);
+      }
+    );
   }
 
   public getPages(): Observable<Array<Tab>> {
     return this.http.get<Array<Tab>>(environment.api + "pages/");
-      // .pipe(
-      //   skipWhile(u => {
-      //     console.log("u", u);
-      //     return !u;
-      //   }),
-      //   take(1),
-      //   map((tabs) => this.tabs = tabs));
   }
+  //
+  // public openTab(url: string): void {
+  //   const tab = this.getTabOptionByUrl(url);
+  //   this.tabs(tab);
+  // }
+  //
+  // public getTabOptionByUrl(url: string): Tab {
+  //   return this.tabOptions.find(tab =&gt; tab.url === url);
+  // }
+  //
+  // public deleteTab(index: number) {
+  //   this.tabs.splice(index, 1);
+  // }
 }

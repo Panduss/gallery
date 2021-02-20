@@ -10,4 +10,10 @@ export default class Image {
     @IsString()
     public url: string;
 
+    @IsString()
+    public pageId?: string;
+
+    @IsString()
+    public description?: string;
+
 }

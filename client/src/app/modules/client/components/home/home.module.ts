@@ -1,27 +1,18 @@
-import {NgModule} from "@angular/core";
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home.component";
-
-const routes: Routes = [{
-  path: "",
-  component: HomeComponent
-}];
+import {HOME_ROUTE} from "./home-routing.module";
+import {MaterialModule} from "../../../../material.module";
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    MaterialModule,
+    RouterModule.forChild([HOME_ROUTE])
   ],
-  exports: [
-    HomeComponent
-  ],
-  declarations: [
-    HomeComponent
-  ],
-  entryComponents: [
-    HomeComponent
-  ]
+  declarations: [HomeComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeModule {
 }

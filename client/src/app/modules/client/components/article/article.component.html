@@ -1,0 +1,11 @@
+
+<div class="container">
+  <div *ngIf="(state$ | async)?.title">
+    {{(state$ | async)?.subtitle}}
+  </div>
+
+  <input type="file" name="img" multiple (change)="onChange($event)">
+  <div *ngFor="let fileUrl of base64Files">
+    <img alt="" [src]="fileUrl" />
+  </div>
+</div>

@@ -24,9 +24,6 @@ export async function addPage(type: TabType, title: string, subtitle?: string, i
     if (subtitle) {
         page.subtitle = subtitle;
     }
-    if (images) {
-        page.images = images;
-    }
 
     return await pagesRepository.create(page);
 }
@@ -44,9 +41,6 @@ export async function editPage(id: string, type: TabType, title: string, subtitl
         page.title = title;
         if (subtitle) {
             page.subtitle = subtitle;
-        }
-        if (images) {
-            page.images = images;
         }
 
         return await pagesRepository.update(page);
