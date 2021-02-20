@@ -37,7 +37,11 @@ const corsOptions = {
 app.use(morgan(morgan.compile("[:date[web]] :method :url :status (millis :response-time) :remote-addr :referrer")));
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    parameterLimit: 100000,
+    extended: true
+}));
 app.use('/', routes);
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
     res.status(error.status || 500).send({
