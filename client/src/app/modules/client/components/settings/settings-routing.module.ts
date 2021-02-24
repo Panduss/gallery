@@ -1,11 +1,11 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {ArticleComponent} from "./article.component";
+import {SettingsComponent} from "./settings.component";
 import {CommonModule} from "@angular/common";
 import {MaterialModule} from "../../../../material.module";
 
 const routes: Routes = [
-  {path: "", component: ArticleComponent}
+  {path: "", component: SettingsComponent}
 ];
 
 @NgModule({
@@ -15,7 +15,7 @@ const routes: Routes = [
     MaterialModule
   ],
   declarations: [
-    ArticleComponent
+    SettingsComponent
   ]
 })
-export class ArticleRoutingModule {}
+export class SettingsRoutingModule {}

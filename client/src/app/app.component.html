@@ -1,6 +1,8 @@
-<mat-toolbar color="primary">
-  <span>Angular Material App With Tab and Routing </span>
-  <span class="example-fill-remaining-space"></span>
+<mat-toolbar class="header" color="primary">
+  <span>Gallery</span>
+  <button mat-button routerLink="/settings">
+    <mat-icon aria-hidden="false" aria-label="Settings icon">settings</mat-icon>
+  </button>
 </mat-toolbar>
 <router-outlet></router-outlet>
 
