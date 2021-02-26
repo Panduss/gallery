@@ -1,23 +1,40 @@
 
-body { padding: 10px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
 
-.mat-tab-link-active,
-.mat-tab-label-active {
-  background-color: #2E3E4C;
-  color: #D5FEFF;
+
+@mixin header-elements {
+  min-width: 200px !important;
   border: none;
   font-weight: bold;
+  font-size: large;
 }
 
+.mat-tab-nav-bar,
+.mat-tab-link-active,
 .mat-tab-link,
 .mat-tab-label {
-  line-height: 30px !important;
-  height: 30px !important;
-  min-width: 100px !important;
-  border: none;
+  @include header-elements;
+  color: #D5FEFF;
 }
 
-.tabContentContainer {
-  border: none;
-  background: #ffffff 50% 50% repeat-x;
+.mat-tab-label-active {
+  @include header-elements;
+  color: #dff9fa;
 }
+
+
+.header {
+  height: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.settings-button {
+  color: #D5FEFF;
+  opacity: .6;
+}
+
+

@@ -8,23 +8,23 @@ import * as fireorm from "fireorm";
 import cors from "cors";
 import routes from "./routes";
 
-// import {firebaseCred} from "./firebaseCred";
-//
-// export const fbAdmin = admin.initializeApp({
-//     credential: admin.credential.cert(firebaseCred.SERVICE_ACCOUNT as admin.ServiceAccount),
-//     storageBucket: firebaseCred.STORAGE_BUCKET
-// });
-//
-// export const fb = firebase.initializeApp(firebaseCred.FIREBASE_CONFIG);
-// fireorm.initialize(admin.firestore());
+import {firebaseCred} from "./firebaseCred";
 
 export const fbAdmin = admin.initializeApp({
-    credential: admin.credential.cert(JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii")) as admin.ServiceAccount),
-    storageBucket: process.env.STORAGE_BUCKET
+    credential: admin.credential.cert(firebaseCred.SERVICE_ACCOUNT as admin.ServiceAccount),
+    storageBucket: firebaseCred.STORAGE_BUCKET
 });
 
-export const fb = firebase.initializeApp(JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
+export const fb = firebase.initializeApp(firebaseCred.FIREBASE_CONFIG);
 fireorm.initialize(admin.firestore());
+
+// export const fbAdmin = admin.initializeApp({
+//     credential: admin.credential.cert(JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii")) as admin.ServiceAccount),
+//     storageBucket: process.env.STORAGE_BUCKET
+// });
+//
+// export const fb = firebase.initializeApp(JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));
+// fireorm.initialize(admin.firestore());
 
 const app = express();
 const PORT = process.env.PORT || 5000
