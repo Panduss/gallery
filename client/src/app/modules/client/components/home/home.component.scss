@@ -6,7 +6,7 @@ body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
   min-width: 200px !important;
   border: none;
   font-weight: bold;
-  font-size: large;
+  font-size: x-large;
 }
 
 .mat-tab-nav-bar,
@@ -35,6 +35,8 @@ body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
 .settings-button {
   color: #D5FEFF;
   opacity: .6;
+  height: 48px !important;
+  line-height: 0;
 }
 
 

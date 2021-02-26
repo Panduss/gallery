@@ -29,25 +29,12 @@ export class ArticleComponent implements OnInit {
     private authService: AuthService,
     private dialog: MatDialog
   ) {
-    this.images = this.activatedRoute.snapshot.data.images;
+    this.activatedRoute.data.subscribe(data => {
+      this.images = data.images;
+    });
   }
 
   public ngOnInit(): void {
-    // this.state$ = this.activatedRoute.paramMap.pipe(
-    //   map(() => {
-    //     if (window.history.state.data) {
-    //       console.log('hallo?')
-    //       this.loading = true;
-    //       this.pageId = window.history.state.data.id;
-    //       this.imageService.getImages(this.pageId).subscribe(
-    //         (images: Array<Image>) => {
-    //           this.images = images;
-    //           this.loading = false;
-    //         });
-    //     }
-    //     return window.history.state.data;
-    //   }));
-
     this.galleryForm = this.formBuilder.group({
       file: [null, Validators.required],
       title: [null, Validators.required],
