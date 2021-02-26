@@ -5,6 +5,7 @@ import {map} from "rxjs/operators";
 import {Tab} from "../../../../models/tab.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Image} from "../../../../models/image.model";
+import {ImageService} from "../../../../services/image.service";
 
 @Component({
   selector: "app-home",
@@ -22,7 +23,8 @@ export class ArticleComponent implements OnInit {
 
   public constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private imageService: ImageService
   ) {
     this.state$ = this.activatedRoute.paramMap.pipe(map(() => {
       if (window.history.state.data) { this.pageId = window.history.state.data.id; }
@@ -63,6 +65,10 @@ export class ArticleComponent implements OnInit {
 
     const data = new Image(this.pageId, this.image.file, this.image.title, this.image.description);
     console.log(data);
+
+    this.imageService.addImage(this.pageId, data).subscribe((stuff) => {
+      console.log("hello", stuff);
+    });
     // POST here
     // this.http.post('http://localhost:8001/upload.php', this.myForm.value)
     //   .subscribe(res => {

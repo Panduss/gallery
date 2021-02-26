@@ -17,5 +17,7 @@ export class ImageService {
     return this.http.get<Array<Image>>(`${environment.api}/images/${pageId}`);
   }
 
-  public addImage(pageId: string, image: Image): Observable<>
+  public addImage(pageId: string, image: Image): Observable<Image> {
+    return this.http.post<Image>(`${environment.api}/images/${pageId}`, {image});
+  }
 }
