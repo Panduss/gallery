@@ -1,13 +1,11 @@
-//.imageContainer {
-//  max-height: 700px;
-//  max-width: 700px;
-//}
-//
 .image {
   transition: all 2s;
   float: left;
-  height: 100%;
   width: 100%;
-  margin: auto 10px;
   object-fit: contain;
+  margin: 5px;
+}
+
+.modal {
+
 }

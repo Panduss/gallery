@@ -19,7 +19,7 @@ export class HomeComponent {
     this.tabService.tabs$.subscribe(async (tabs: Array<Tab>) => {
       this.tabs = tabs;
       if (this.tabs) {
-        await this.router.navigate([`article/${this.tabs[0].id}`])
+        await this.router.navigate([`article/${this.tabs[0].id}`]);
       }
     });
   }
