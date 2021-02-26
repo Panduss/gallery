@@ -10,10 +10,10 @@ export async function getAllPages(): Promise<Array<Page>> {
 
 export async function addPage(type: TabType, title: string, subtitle?: string, images?: Array<Image>): Promise<Page> {
     if (!type) {
-        throw new Error("Page type must be provided!");
+        throw new Error("PageModel type must be provided!");
     }
     if (!title) {
-        throw new Error("Page title must be provided!");
+        throw new Error("PageModel title must be provided!");
     }
 
     const pagesRepository = getRepository(Page);
@@ -24,16 +24,13 @@ export async function addPage(type: TabType, title: string, subtitle?: string, i
     if (subtitle) {
         page.subtitle = subtitle;
     }
-    if (images) {
-        page.images = images;
-    }
 
     return await pagesRepository.create(page);
 }
 
 export async function editPage(id: string, type: TabType, title: string, subtitle?: string, images?: Array<Image>): Promise<Page> {
     if (!id) {
-        throw new Error("Page id must be provided!");
+        throw new Error("PageModel id must be provided!");
     }
 
     const pagesRepository = getRepository(Page);
@@ -45,20 +42,17 @@ export async function editPage(id: string, type: TabType, title: string, subtitl
         if (subtitle) {
             page.subtitle = subtitle;
         }
-        if (images) {
-            page.images = images;
-        }
 
         return await pagesRepository.update(page);
 
     } else {
-        throw new Error("Page does not exist!");
+        throw new Error("PageModel does not exist!");
     }
 }
 
 export async function deletePage(id: string): Promise<boolean> {
     if (!id) {
-        throw new Error("Page id must be provided!");
+        throw new Error("PageModel id must be provided!");
     }
 
     const pagesRepository = getRepository(Page);
@@ -69,6 +63,6 @@ export async function deletePage(id: string): Promise<boolean> {
         return true;
 
     } else {
-        throw new Error("Page does not exist!");
+        throw new Error("PageModel does not exist!");
     }
 }

@@ -24,10 +24,8 @@ export async function login(email: string, password: string): Promise<AuthUser> 
 
     if (userId && token) {
         const usersRepository = getRepository(User);
-        const authUser = new AuthUser()
-        authUser.user = await usersRepository.findById(userId);
-        authUser.token = token;
-        return authUser;
+        const user = await usersRepository.findById(userId);
+        return new AuthUser(token, user.id, user.name, user.email)
     } else {
         throw new Error('Email is not verified!');
     }

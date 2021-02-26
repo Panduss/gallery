@@ -1,5 +1,5 @@
-import {TabType} from './tabType';
-import {Image} from './image';
+import {TabType} from "./tabType.model";
+import {Image} from "./image.model";
 
 export class Page {
   public id: string;
@@ -15,7 +15,9 @@ export class Page {
     images: Array<Image>,
     id?: string
   ) {
-    if (id) { this.id = id; };
+    if (id) {
+      this.id = id;
+    }
     this.type = type;
     this.title = title;
     this.subtitle = subtitle;

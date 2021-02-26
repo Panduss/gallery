@@ -1,7 +1,8 @@
-<!--app-header-->
+<mat-toolbar class="header" color="primary">
+  <span>Gallery</span>
+  <button mat-button routerLink="/settings">
+    <mat-icon aria-hidden="false" aria-label="Settings icon">settings</mat-icon>
+  </button>
+</mat-toolbar>
+<router-outlet></router-outlet>
 
-<div class="custom-theme" fxFlex>
-  <router-outlet></router-outlet>
-</div>
-
-<!--app-footer-->

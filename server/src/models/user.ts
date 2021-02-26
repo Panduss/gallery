@@ -10,4 +10,7 @@ export class User {
     @IsEmail()
     public email: string;
 
+    @IsString()
+    public name: string;
+
 }

@@ -1,0 +1,13 @@
+<mat-toolbar class="container">
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link
+       *ngFor="let tab of tabs"
+       [routerLink]='"/article/"+tab.id'
+       [state]="{data: tab}"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive">
+      {{tab.title}}
+    </a>
+  </nav>
+</mat-toolbar>
+<router-outlet></router-outlet>

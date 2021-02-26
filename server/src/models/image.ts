@@ -8,6 +8,17 @@ export default class Image {
     public id: string;
 
     @IsString()
+    public pageId: string;
+
+    @IsString()
     public url: string;
 
+    @IsString()
+    public title: string;
+
+    @IsString()
+    public description?: string;
+
+    @IsString()
+    public file?: string;
 }
