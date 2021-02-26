@@ -1,9 +1,7 @@
 import {getRepository} from "fireorm";
 import Image from "../models/image";
 import {fbAdmin} from "../server";
-
 const uuid = require("uuid-v4");
-const bucket = fbAdmin.storage().bucket();
 
 export async function getImagesForPage(pageId: string): Promise<Array<Image>> {
     const imagesRepository = getRepository(Image);
@@ -11,7 +9,7 @@ export async function getImagesForPage(pageId: string): Promise<Array<Image>> {
 }
 
 export async function addImagesToPage(image: Image, pageId: string): Promise<Image> {
-    if (!image) {
+    if (!image.file) {
         throw new Error("No image to upload!");
     }
     if (!pageId) {
@@ -39,21 +37,25 @@ export async function addImagesToPage(image: Image, pageId: string): Promise<Ima
 
 async function uploadImage(picture: Image): Promise<any> {
 
+    const bucket = fbAdmin.storage().bucket();
+
     const metadata = {
         metadata: {
             // This line is very important. It's to create a download token.
             firebaseStorageDownloadTokens: uuid()
         },
-        contentType: "image/png",
+        contentType: "image/jpeg",
         cacheControl: "public, max-age=31536000",
     };
 
     console.log(`${picture.title} is uploading...`);
 
     // Uploads a local file to the bucket
-    return await bucket.upload(picture.title, {
+    return await bucket.upload(picture.file.replace(/\r\n|\n|\r)/gm, ""), {
         // Support for HTTP requests made with `Accept-Encoding: gzip`
         gzip: true,
         metadata: metadata,
     });
+
+    //.replace(/(data:image\/jpeg;base64,\/)|(\r\n|\n|\r)/gm,"")
 }

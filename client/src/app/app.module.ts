@@ -10,10 +10,12 @@ import {MaterialModule} from "./material.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {StorageProvider} from "./providers/storage.provider";
 import {HeaderInterceptor} from "./interceptors/header.interceptor";
+import {ModalComponent} from "./modules/client/components/modal/modal.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,9 @@ import {HeaderInterceptor} from "./interceptors/header.interceptor";
       useClass: HeaderInterceptor,
       multi: true
     },
+  ],
+  entryComponents: [
+    ModalComponent
   ],
   bootstrap: [AppComponent]
 })

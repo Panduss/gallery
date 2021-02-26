@@ -3,7 +3,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -26,7 +26,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MaterialFileInputModule,
     MatButtonModule,
     ImageUploadModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   exports: [
     MatTabsModule,
@@ -40,7 +41,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MaterialFileInputModule,
     MatButtonModule,
     ImageUploadModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule {

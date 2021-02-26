@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home.component";
 import {HOME_ROUTE} from "./home-routing.module";
 import {MaterialModule} from "../../../../material.module";
+import {ModalComponent} from "../modal/modal.component";
 
 @NgModule({
   imports: [

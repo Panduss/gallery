@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Tab} from "../models/tab.model";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
 import {BehaviorSubject, Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: "root"

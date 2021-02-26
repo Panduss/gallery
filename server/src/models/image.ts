@@ -18,4 +18,7 @@ export default class Image {
 
     @IsString()
     public description?: string;
+
+    @IsString()
+    public file?: string;
 }
