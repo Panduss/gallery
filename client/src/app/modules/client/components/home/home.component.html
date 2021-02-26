@@ -1,4 +1,4 @@
-<mat-toolbar class="container" color="primary">
+<mat-toolbar class="header" color="primary">
   <nav mat-tab-nav-bar>
     <a mat-tab-link
        *ngFor="let tab of tabs"
@@ -9,7 +9,7 @@
       {{tab.title}}
     </a>
   </nav>
-  <button mat-button routerLink="/settings">
+  <button mat-button class="settings-button" routerLink="/settings">
     <mat-icon aria-hidden="false" aria-label="Settings icon">settings</mat-icon>
   </button>
 </mat-toolbar>

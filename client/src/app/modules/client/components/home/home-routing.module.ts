@@ -29,7 +29,7 @@ export const HOME_ROUTE: Route = {
     MaterialModule,
     RouterModule.forChild([HOME_ROUTE])
   ],
-  providers:[
+  providers: [
     ImageResolver
   ],
   declarations: [HomeComponent],

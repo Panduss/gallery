@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../services/auth.service";
 import {User} from "../../../../models/user.model";
-import {StorageProvider} from "../../../../providers/storage.provider";
 
 @Component({
   selector: "app-settings",
@@ -15,8 +14,7 @@ export class SettingsComponent implements OnInit {
 
   public constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private storage: StorageProvider
+    private authService: AuthService
   ) {
   }
 
