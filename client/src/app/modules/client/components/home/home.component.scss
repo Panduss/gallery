@@ -1,2 +1,23 @@
 
 body { padding: 10px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-tab-link-active,
+.mat-tab-label-active {
+  background-color: #2E3E4C;
+  color: #D5FEFF;
+  border: none;
+  font-weight: bold;
+}
+
+.mat-tab-link,
+.mat-tab-label {
+  line-height: 30px !important;
+  height: 30px !important;
+  min-width: 100px !important;
+  border: none;
+}
+
+.tabContentContainer {
+  border: none;
+  background: #ffffff 50% 50% repeat-x;
+}

@@ -39,8 +39,10 @@
       </mat-card>
     </div>
     <div class="container">
-      <mat-spinner *ngIf="loading" color="secondary"></mat-spinner>
-      <div class='container' *ngFor="let image of images" ><img (click)="openModal(image)" class="image" [src]='image.url' [alt]="image.title"/></div>
+      <div><mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner></div>
+      <div class='container'
+           *ngFor="let image of images" ><img (click)="openModal(image)" class="image" [src]='image.url' [alt]="image.title"/>
+      </div>
     </div>
   </div>
 </div>

@@ -41,7 +41,6 @@ export class ArticleComponent implements OnInit {
           this.pageId = window.history.state.data.id;
           this.imageService.getImages(this.pageId).subscribe(
             (images: Array<Image>) => {
-              console.log("images", images);
               this.images = images;
               this.loading = false;
             });
