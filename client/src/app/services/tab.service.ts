@@ -23,7 +23,7 @@ export class TabService {
   }
 
   public getPages(): Observable<Array<Tab>> {
-    return this.http.get<Array<Tab>>(environment.api + "pages/");
+    return this.http.get<Array<Tab>>(`${environment.api}/pages`);
   }
   //
   // public openTab(url: string): void {

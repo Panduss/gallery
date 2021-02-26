@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../services/auth.service";
 import {User} from "../../../../models/user.model";
+import {StorageProvider} from "../../../../providers/storage.provider";
 
 @Component({
   selector: "app-settings",
@@ -14,7 +15,8 @@ export class SettingsComponent implements OnInit {
 
   public constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private storage: StorageProvider
   ) {
   }
 
@@ -26,11 +28,10 @@ export class SettingsComponent implements OnInit {
   }
 
   public onFormSubmit(): void {
-    console.log("this.loginForm.value", this.loginForm.value);
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.get("email").value, this.loginForm.get("password").value).subscribe(
         (user: User) => {
-          console.log("LOGIN RES", user);
+          // reroute to authed routes
         }
       );
     }

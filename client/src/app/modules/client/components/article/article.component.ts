@@ -17,39 +17,57 @@ export class ArticleComponent implements OnInit {
   public galleryForm: FormGroup;
   public image: Image;
   public isLoading = false;
+  public imageSrc: string;
+  private pageId: string;
 
   public constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {
     this.state$ = this.activatedRoute.paramMap.pipe(map(() => {
-      console.log("window.history.state", window.history.state.data);
+      if (window.history.state.data) { this.pageId = window.history.state.data.id; }
       return window.history.state.data;
     }));
   }
 
   public ngOnInit(): void {
     this.galleryForm = this.formBuilder.group({
-      imageFile: [null, Validators.required],
-      imageTitle: [null, Validators.required],
-      imageDesc: [null, Validators.required]
+      file: [null, Validators.required],
+      title: [null, Validators.required],
+      description: [null, Validators.required]
     });
   }
 
-  public onFormSubmit(): void {
-    this.isLoading = true;
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        console.log("reader.result", reader.result);
+        this.imageSrc = reader.result as string;
+        this.galleryForm.patchValue({
+          file: reader.result
+        });
+      };
+    }
+  }
 
-    console.log("this.galleryForm.value", this.galleryForm.get("imageFile").value._files[0]);
-    // POST REQUEST LATER
-    // this.api.addGallery(this.galleryForm.value, this.galleryForm.get('imageFile').value._files[0])
-    //   .subscribe((res: any) => {
-    //     this.isLoadingResults = false;
-    //     if (res.body) {
-    //       this.router.navigate(['/gallery-details', res.body._id]);
-    //     }
-    //   }, (err: any) => {
-    //     console.log(err);
-    //     this.isLoadingResults = false;
-    //   });
+  public onFormSubmit(): void {
+    console.log(this.galleryForm.value);
+    this.image = this.galleryForm.value;
+
+    if (!this.image.file && !this.image.title) {
+      return;
+    }
+
+    const data = new Image(this.pageId, this.image.file, this.image.title, this.image.description);
+    console.log(data);
+    // POST here
+    // this.http.post('http://localhost:8001/upload.php', this.myForm.value)
+    //   .subscribe(res => {
+    //     console.log(res);
+    //     alert('Uploaded Successfully.');
+    //   })
   }
 }

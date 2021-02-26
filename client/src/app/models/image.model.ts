@@ -1,12 +1,14 @@
 export class Image {
   id?: string;
-  url?: string;
+  pageId: string;
   file?: File;
   title?: string;
   description?: string;
+  url?: string;
 
-  public constructor(url?: string, id?: string, file?: File, title?: string, description?: string) {
-    if (id) {this.id = id; }
+  public constructor(pageId: string, file: File, title: string, description: string, url?: string, id?: string) {
+    if (pageId) { this.pageId = pageId; }
+    if (id) { this.id = id; }
     if (url) { this.url = url; }
     if (file) { this.file = file; }
     if (title) { this.title = title; }

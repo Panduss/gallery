@@ -1,25 +1,26 @@
-import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
+import { Inject, Injectable } from "@angular/core";
+import { SESSION_STORAGE, StorageService } from "ngx-webstorage-service";
 
-@Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export class StorageProvider {
 
   constructor(
-    private router: Router,
-    private storage: Storage
+    @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
   }
 
-  public async getFromStorage<T>(keyword: string): Promise<T> {
-    return await this.storage.get(keyword).catch();
+  public async getItem<T>(keyword: string): Promise<T> {
+    return await this.storage.get(keyword);
   }
 
-  public setInStorage<T>(key: string, value: any): void {
-    this.storage.setItem(key, value);
+  public setItem<T>(key: string, value: any): void {
+    this.storage.set(key, value);
   }
 
-  public removeFromStorage<T>(key: string): void {
-    this.storage.removeItem(key);
+  public removeItem<T>(key: string): void {
+    this.storage.remove(key);
   }
 
   public clearStorage(): void {
