@@ -1,8 +1,6 @@
 
 <div class="container">
-  <div *ngIf="(state$ | async)?.title">
-    {{(state$ | async)?.subtitle}}
-
+  <div>
     <div *ngIf="(authUser$|async)">
       <h2>Add Gallery</h2>
       <mat-card class="card">

@@ -1,13 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {map, take} from "rxjs/operators";
-import {Tab} from "../../../../models/tab.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Image} from "../../../../models/image.model";
 import {ImageService} from "../../../../services/image.service";
 import {AuthService} from "../../../../services/auth.service";
-import swal, {SweetAlertResult} from "sweetalert2";
 import {ModalComponent} from "../modal/modal.component";
 import {MatDialog} from "@angular/material";
 
@@ -18,7 +14,6 @@ import {MatDialog} from "@angular/material";
 })
 export class ArticleComponent implements OnInit {
 
-  public state$: Observable<Tab>;
   public galleryForm: FormGroup;
   public image: Image;
   public images: Array<Image> = [];
@@ -34,22 +29,25 @@ export class ArticleComponent implements OnInit {
     private authService: AuthService,
     private dialog: MatDialog
   ) {
-    this.state$ = this.activatedRoute.paramMap.pipe(
-      map(() => {
-        if (window.history.state.data) {
-          this.loading = true;
-          this.pageId = window.history.state.data.id;
-          this.imageService.getImages(this.pageId).subscribe(
-            (images: Array<Image>) => {
-              this.images = images;
-              this.loading = false;
-            });
-        }
-        return window.history.state.data;
-      }));
+    this.images = this.activatedRoute.snapshot.data.images;
   }
 
   public ngOnInit(): void {
+    // this.state$ = this.activatedRoute.paramMap.pipe(
+    //   map(() => {
+    //     if (window.history.state.data) {
+    //       console.log('hallo?')
+    //       this.loading = true;
+    //       this.pageId = window.history.state.data.id;
+    //       this.imageService.getImages(this.pageId).subscribe(
+    //         (images: Array<Image>) => {
+    //           this.images = images;
+    //           this.loading = false;
+    //         });
+    //     }
+    //     return window.history.state.data;
+    //   }));
+
     this.galleryForm = this.formBuilder.group({
       file: [null, Validators.required],
       title: [null, Validators.required],
@@ -63,8 +61,7 @@ export class ArticleComponent implements OnInit {
       hasBackdrop: true,
       width: "80%",
       height: "80%",
-      panelClass: "sc-dialog-container"
-      // Managed in styles.css
+      panelClass: "modal"
     });
 
     dialogRef.afterClosed().subscribe();
@@ -73,45 +70,46 @@ export class ArticleComponent implements OnInit {
   async onFileChange(event) {
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
-      const img = document.createElement("img");
-      img.src = await new Promise<any>(resolve => {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.imageSrc = reader.result as string;
-          resolve(e.target.result);
-        };
-        reader.readAsDataURL(file);
-      });
-      await new Promise(resolve => img.onload = resolve);
-      const canvas = document.createElement("canvas");
-      let ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
-      const MAX_WIDTH = 400;
-      const MAX_HEIGHT = 400;
-      let width = img.naturalWidth;
-      let height = img.naturalHeight;
-      if (width > height) {
-        if (width > MAX_WIDTH) {
-          height *= MAX_WIDTH / width;
-          width = MAX_WIDTH;
-        }
-      } else {
-        if (height > MAX_HEIGHT) {
-          width *= MAX_HEIGHT / height;
-          height = MAX_HEIGHT;
-        }
-      }
-      canvas.width = width;
-      canvas.height = height;
-      ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, width, height);
-      const result = await new Promise<Blob>(resolve => { canvas.toBlob(resolve, "image/jpeg", 0.95); });
+      // const img = document.createElement("img");
+      // img.src = await new Promise<any>(resolve => {
 
-      console.log("RESULT", result);
-      this.galleryForm.patchValue({
-        file: result
-      });
-      return result;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageSrc = reader.result as string;
+        // resolve(e.target.result);
+      };
+      reader.readAsDataURL(file);
+      // });
+      // await new Promise(resolve => img.onload = resolve);
+      // const canvas = document.createElement("canvas");
+      // let ctx = canvas.getContext("2d");
+      // ctx.drawImage(img, 0, 0);
+      // const MAX_WIDTH = 400;
+      // const MAX_HEIGHT = 400;
+      // let width = img.naturalWidth;
+      // let height = img.naturalHeight;
+      // if (width > height) {
+      //   if (width > MAX_WIDTH) {
+      //     height *= MAX_WIDTH / width;
+      //     width = MAX_WIDTH;
+      //   }
+      // } else {
+      //   if (height > MAX_HEIGHT) {
+      //     width *= MAX_HEIGHT / height;
+      //     height = MAX_HEIGHT;
+      //   }
+      // }
+      // canvas.width = width;
+      // canvas.height = height;
+      // ctx = canvas.getContext("2d");
+      // ctx.drawImage(img, 0, 0, width, height);
+      // const result = await new Promise<Blob>(resolve => { canvas.toBlob(resolve, "image/jpeg", 0.95); });
+      //
+      // console.log("RESULT", result);
+      // this.galleryForm.patchValue({
+      //   file: result
+      // });
+      // return result;
     }
   }
 
