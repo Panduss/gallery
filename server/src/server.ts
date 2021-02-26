@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 5000
 
 const whitelist = [
     "http://localhost:4200",
-    "https://nellekes-atelier.netlify.app/"
+    "https://nellekes-atelier.netlify.app"
 ];
 
 const corsOptions = {
