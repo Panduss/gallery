@@ -2,9 +2,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
-import {TabService} from "./services/tab.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {TabResolver} from "./resolvers/tab.resolver";
 import {HomeModule} from "./modules/client/components/home/home.module";
 import {MaterialModule} from "./material.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -26,8 +24,6 @@ import {ModalComponent} from "./modules/client/components/modal/modal.component"
     MaterialModule
   ],
   providers: [
-    TabService,
-    TabResolver,
     StorageProvider,
     {
       provide: HTTP_INTERCEPTORS,
