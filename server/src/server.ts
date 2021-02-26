@@ -11,6 +11,7 @@ import routes from "./routes";
 export const fbAdmin = admin.initializeApp({
     credential: admin.credential.cert(JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT, "base64").toString("ascii")) as admin.ServiceAccount),
     databaseURL: process.env.FIREBASE_DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET
 });
 
 export const fb = firebase.initializeApp(JSON.parse(Buffer.from(process.env.FIREBASE_CONFIG, "base64").toString("ascii")));

@@ -12,7 +12,7 @@ router.get("/:id", (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.post("/:id", authorize, (req: Request, res: Response, next:NextFunction) => {
-    ImagesApi.addImagesToPage(req.body.images, req.params.id)
+    ImagesApi.addImagesToPage(req.body.image, req.params.id)
         .then((result: Array<Image>) => res.status(200).send(result))
         .catch(next);
 });
