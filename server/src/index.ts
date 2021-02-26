@@ -15,7 +15,7 @@ interface PagesApiInterface {
 
 interface ImagesApiInterface {
     getImagesForPage: (pageId: string) => Promise<Array<Image>>;
-    addImagesToPage: (pictures: Array<Image>, pageId: string) => Promise<Array<Image>>;
+    addImagesToPage: (pictures: Image, pageId: string) => Promise<Image>;
 }
 
 interface AuthApiInterface {
