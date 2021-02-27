@@ -36,10 +36,17 @@
         <img [src]="imageSrc" style="height: 500px; width:500px" alt="preview">
       </mat-card>
     </div>
-    <div class="container">
-      <div><mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner></div>
-      <div class='container'
-           *ngFor="let image of images" ><img (click)="openModal(image)" class="image" [src]='image.url' [alt]="image.title"/>
+    <div>
+      <div class="container">
+        <div><mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner></div>
+        <div *ngIf="(page$|async) && (page$|async).subtitle">
+          {{(page$|async).subtitle}}
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div *ngFor="let image of images" >
+        <img (click)="openModal(image)" class="image" [src]='image.url' [alt]="image.title"/>
       </div>
     </div>
   </div>

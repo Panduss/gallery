@@ -1,6 +1,5 @@
-
 body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
-
+@import "../../../../../theme/custom";
 
 @mixin header-elements {
   min-width: 200px !important;
@@ -14,29 +13,44 @@ body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
 .mat-tab-link,
 .mat-tab-label {
   @include header-elements;
-  color: #D5FEFF;
+  color: mat-color($accent, 400)
 }
 
 .mat-tab-label-active {
   @include header-elements;
-  color: #dff9fa;
+  color: mat-color($accent, 50)
 }
 
-
 .header {
-  height: 200px;
   padding: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-end;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:200px;
+  overflow:hidden;
+  z-index: 1;
+}
+
+.content {
+  position:absolute;
+  top:200px;
+  left:0;
+  right:0;
+  overflow:auto;
+}
+
+.header.mat-toolbar {
+  border-bottom: 2px solid mat-color($accent, 300) !important;
 }
 
 .settings-button {
-  color: #D5FEFF;
+  color: mat-color($accent, 400);
   opacity: .6;
   height: 48px !important;
   line-height: 0;
 }
-
-

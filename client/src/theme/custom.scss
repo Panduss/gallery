@@ -72,7 +72,6 @@ $rijks: (
   )
 );
 
-
 $accent: (
   50 : #fcf9fb,
   100 : #f9f1f5,
@@ -109,6 +108,10 @@ $accent: (
 // mandatory stuff for theming
 $custom-palette-primary: mat-palette($rijks);
 $custom-palette-accent:  mat-palette($accent);
+
+$primary: mat-palette($rijks, 800, 500, 900);
+$accent:  mat-palette($accent, A200, A100, A400);
+$warn: mat-palette($mat-red);
 
 $custom-theme: mat-light-theme($custom-palette-primary, $custom-palette-accent);
 

@@ -1,4 +1,7 @@
-html, body { height: 100%; }
+@import "~@angular/material/theming";
+@import 'theme/custom';
+
+html, body { height: 100%; background: mat-color($primary, 500) }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container {
@@ -30,4 +33,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-flat-button {
   margin: 5px;
+}
+
+.mat-dialog-container {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  max-width: 80% !important;
+  max-height: 80% !important;
+  margin: auto !important;
 }
