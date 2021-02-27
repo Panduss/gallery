@@ -4,6 +4,7 @@ import {Route, RouterModule} from "@angular/router";
 import { MaterialModule } from "src/app/material.module";
 import {ImageResolver} from "src/app/resolvers/image.resolver";
 import {HomeComponent} from "./home.component";
+import {TabResolver} from "../../../../resolvers/tab.resolver";
 
 export const HOME_ROUTE: Route = {
   path: "",
@@ -16,7 +17,7 @@ export const HOME_ROUTE: Route = {
     {
       path: "article/:id",
       loadChildren: () => import("../article/article.module").then(m => m.ArticleModule),
-      runGuardsAndResolvers: "always",
+      runGuardsAndResolvers: "paramsOrQueryParamsChange",
       resolve: {
         images: ImageResolver
       }
@@ -31,7 +32,8 @@ export const HOME_ROUTE: Route = {
     RouterModule.forChild([HOME_ROUTE])
   ],
   providers: [
-    ImageResolver
+    ImageResolver,
+    TabResolver
   ],
   declarations: [HomeComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

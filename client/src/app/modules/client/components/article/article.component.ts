@@ -6,6 +6,9 @@ import {ImageService} from "../../../../services/image.service";
 import {AuthService} from "../../../../services/auth.service";
 import {ModalComponent} from "../modal/modal.component";
 import {MatDialog} from "@angular/material";
+import {Tab} from "../../../../models/tab.model";
+import {map} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 @Component({
   selector: "app-home",
@@ -18,9 +21,10 @@ export class ArticleComponent implements OnInit {
   public image: Image;
   public images: Array<Image> = [];
   public imageSrc: string;
-  private pageId: string;
   public authUser$ = this.authService.user$;
   public loading = false;
+  public pageId: string;
+  public page$: Observable<Tab>;
 
   public constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,9 +33,16 @@ export class ArticleComponent implements OnInit {
     private authService: AuthService,
     private dialog: MatDialog
   ) {
-    this.activatedRoute.data.subscribe(data => {
+    this.activatedRoute.data.subscribe((data) => {
       this.images = data.images;
     });
+    this.page$ = this.activatedRoute.paramMap.pipe(map(() => {
+      console.log("window.history.state.data", window.history.state.data);
+      if (window.history.state.data) {
+        this.pageId = window.history.state.data.id;
+      }
+      return window.history.state.data;
+    }));
   }
 
   public ngOnInit(): void {
@@ -46,8 +57,6 @@ export class ArticleComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalComponent, {
       data: image,
       hasBackdrop: true,
-      width: "80%",
-      height: "80%",
       panelClass: "modal"
     });
 
