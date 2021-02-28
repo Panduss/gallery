@@ -51,6 +51,11 @@
         <div [style.margin-top]="'20px'">
           {{(page$|async).subtitle}}
         </div>
+
+        <div [style.margin-top]="'20px'"
+             *ngIf="(page$|async).data && (page$|async).data.name">
+          {{(page$|async).data.name}}
+        </div>
         <div
           [style.margin-top]="'20px'"
           *ngIf="(page$|async).data && (page$|async).data.email">
@@ -75,6 +80,7 @@
         <div class="infoCard">
           <div>
             <img
+              (click)="openModal(image)"
               class="image"
               [src]='image.url'
               [alt]="image.title"
@@ -89,6 +95,3 @@
 
   </div>
 </div>
-
-<!--(click)="openModal(image)"-->
-
