@@ -9,6 +9,7 @@ import {MatDialog} from "@angular/material";
 import {Tab} from "../../../../models/tab.model";
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {TabService} from "../../../../services/tab.service";
 
 @Component({
   selector: "app-home",
@@ -36,16 +37,16 @@ export class ArticleComponent implements OnInit {
     this.activatedRoute.data.subscribe((data) => {
       this.images = data.images;
     });
+  }
+
+  public ngOnInit(): void {
     this.page$ = this.activatedRoute.paramMap.pipe(map(() => {
-      console.log("window.history.state.data", window.history.state.data);
       if (window.history.state.data) {
         this.pageId = window.history.state.data.id;
       }
       return window.history.state.data;
     }));
-  }
 
-  public ngOnInit(): void {
     this.galleryForm = this.formBuilder.group({
       file: [null, Validators.required],
       title: [null, Validators.required],

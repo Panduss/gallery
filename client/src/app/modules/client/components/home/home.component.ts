@@ -2,7 +2,6 @@ import {Component} from "@angular/core";
 import {Tab} from "../../../../models/tab.model";
 import {Router} from "@angular/router";
 import {TabService} from "../../../../services/tab.service";
-import {TabType} from "../../../../models/tabType.model";
 
 @Component({
   selector: "app-home",
@@ -19,7 +18,7 @@ export class HomeComponent {
   ) {
     this.tabService.tabs$.subscribe(async (tabs: Array<Tab>) => {
       if (tabs) {
-        this.tabs = tabs.filter(tab => tab.type === TabType.image);
+        this.tabs = tabs;
         await this.router.navigate([`article/${this.tabs[0].id}`]);
       }
     });
