@@ -22,6 +22,10 @@ export class TabService {
     );
   }
 
+  public get pages(): Array<Tab> {
+    return this.tabs.value;
+  }
+
   public getPages(): Observable<Array<Tab>> {
     return this.http.get<Array<Tab>>(`${environment.api}/pages`);
   }

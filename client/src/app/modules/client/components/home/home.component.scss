@@ -1,6 +1,5 @@
 @import "../../../../../theme/custom";
-
-body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
+body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; background-color: mat-color($rijks, 500); };
 
 @mixin header-elements {
   min-width: 200px !important;
@@ -70,6 +69,8 @@ body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
   position: absolute;
   top: 78px;
   bottom: 0;
+  right: 0;
+  left: 0;
   padding: 20px;
   overflow: scroll;
   @include md {

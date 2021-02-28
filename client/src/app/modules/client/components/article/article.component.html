@@ -1,82 +1,94 @@
-<div>
-  <div>
-    <div *ngIf="(authUser$|async)">
-      <h2>Add Gallery</h2>
-      <mat-card class="card">
-        <form [formGroup]="galleryForm" (ngSubmit)="onFormSubmit()">
-          <mat-form-field class="full-width">
-            <mat-label>Gallery Image</mat-label>
-            <!--            <ngx-mat-file-input formControlName="file" (change)="onFileChange($event)" placeholder="Select Image" valuePlaceholder="No image file selected"></ngx-mat-file-input>-->
-            <mat-icon matSuffix>folder</mat-icon>
-            <mat-error>
-              <span *ngIf="!galleryForm.get('file').valid">Please select image file</span>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Image Name</mat-label>
-            <label><input matInput placeholder="Image Name" formControlName="title"></label>
-            <mat-error>
+<div *ngIf="(authUser$|async)">
+  <h2>Add Gallery</h2>
+  <mat-card class="card">
+    <form [formGroup]="galleryForm" (ngSubmit)="onFormSubmit()">
+      <mat-form-field class="full-width">
+        <mat-label>Gallery Image</mat-label>
+        <!--            <ngx-mat-file-input formControlName="file" (change)="onFileChange($event)" placeholder="Select Image" valuePlaceholder="No image file selected"></ngx-mat-file-input>-->
+        <mat-icon matSuffix>folder</mat-icon>
+        <mat-error>
+          <span *ngIf="!galleryForm.get('file').valid">Please select image file</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Image Name</mat-label>
+        <label><input matInput placeholder="Image Name" formControlName="title"></label>
+        <mat-error>
               <span
                 *ngIf="!galleryForm.get('title').valid && galleryForm.get('title').touched">Please enter Image Name</span>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>Image Description</mat-label>
-            <label><input matInput placeholder="Image Description" formControlName="description"></label>
-            <mat-error>
-              <span *ngIf="!galleryForm.get('description').valid && galleryForm.get('description').touched">Please enter Image Description</span>
-            </mat-error>
-          </mat-form-field>
-          <div class="button-row">
-            <button type="submit" mat-flat-button color="primary">
-              <mat-icon>upgrade</mat-icon>
-            </button>
-          </div>
-        </form>
-      </mat-card>
-      <mat-card *ngIf="imageSrc">
-        <img [src]="imageSrc" alt="preview">
-      </mat-card>
-    </div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Image Description</mat-label>
+        <label><input matInput placeholder="Image Description" formControlName="description"></label>
+        <mat-error>
+          <span *ngIf="!galleryForm.get('description').valid && galleryForm.get('description').touched">Please enter Image Description</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" mat-flat-button color="primary">
+          <mat-icon>upgrade</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+  <mat-card *ngIf="imageSrc">
+    <img [src]="imageSrc" alt="preview">
+  </mat-card>
+</div>
 
-    <!--    <div>-->
-    <!--      <mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner>-->
-    <!--    </div>-->
+<!--    <div>-->
+<!--      <mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner>-->
+<!--    </div>-->
 
-    <div class="content">
-      <div fxLayout="row" fxLayoutAlign="center center">
+<div fxLayout="column" fxLayoutGap="10px">
+  <div> <!-- gets the 10px margin-->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="(page$|async) && (page$|async).subtitle">
+      <div
+        class="infoCard"
+        fxFlex="50%" fxFlex.xs="100%"
+      >
+        <div [style.margin-top]="'20px'">
+          {{(page$|async).subtitle}}
+        </div>
         <div
-          class="infoCard"
-          fxFlex.sm="50%" fxFlex.xs="100%"
-          *ngIf="(page$|async) && (page$|async).subtitle"
-        >
-          <div [style.margin-top]="'20px'">
-              {{(page$|async).subtitle}}
-          </div>
-          <div
-            [style.margin-top]="'20px'"
-            *ngIf="(page$|async) && (page$|async).data && (page$|async).data.email">
-            <a mat-raised-button color="accent"
-               [href]="'mailto:'+(page$|async).data.email">
-              <mat-icon>alternate_email</mat-icon>
-              Stuur een email
-            </a>
-          </div>
-        </div>
-      </div>
-      <div fxLayout="row wrap" fxLayoutGap="25px grid">
-        <div [style.margin-top]="'20px'" fxFlex.gt-md="25%" fxFlex="33%" fxFlex.sm="50%" fxFlex.xs="100%"
-             fxLayoutAlign="center center"
-             *ngFor="let image of images">
-          <img
-            class="image"
-            [src]='image.url'
-            [alt]="image.title"
-          />
+          [style.margin-top]="'20px'"
+          *ngIf="(page$|async).data && (page$|async).data.email">
+          <a mat-raised-button color="accent"
+             [href]="'mailto:'+(page$|async).data.email">
+            <mat-icon>alternate_email</mat-icon>
+            Stuur een email
+          </a>
         </div>
       </div>
     </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="25px grid">
+      <div
+        [style.margin-top]="'20px'"
+        fxFlex.gt-md="25%"
+        fxFlex="33%"
+        fxFlex.sm="50%"
+        fxFlex.xs="100%"
+        fxLayoutAlign="center center"
+        *ngFor="let image of images">
+        <div class="infoCard">
+          <div>
+            <img
+              class="image"
+              [src]='image.url'
+              [alt]="image.title"
+            />
+          </div>
+          <div>
+            <strong>{{image.title}}</strong> {{image.title && image.description ? '-' : ''}}  {{image.description}}
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!--(click)="openModal(image)"-->
+
