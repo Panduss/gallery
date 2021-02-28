@@ -13,7 +13,6 @@ export class ModalComponent {
     private dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Image
   ) {
-    console.log("hello", data);
   }
 
   public onCloseDialog(): void {

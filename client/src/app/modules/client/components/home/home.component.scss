@@ -1,23 +1,85 @@
+@import "../../../../../theme/custom";
 
-body { padding: 10px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
 
-.mat-tab-link-active,
-.mat-tab-label-active {
-  background-color: #2E3E4C;
-  color: #D5FEFF;
+@mixin header-elements {
+  min-width: 200px !important;
   border: none;
   font-weight: bold;
+  font-size: x-large;
 }
 
+.mat-toolbar,
+.mat-tab-link-active,
 .mat-tab-link,
 .mat-tab-label {
-  line-height: 30px !important;
-  height: 30px !important;
-  min-width: 100px !important;
-  border: none;
+  @include header-elements;
+  color: mat-color($accent, 400)
 }
 
-.tabContentContainer {
-  border: none;
-  background: #ffffff 50% 50% repeat-x;
+.mat-tab-label-active {
+  @include header-elements;
+  color: mat-color($accent, 50)
+}
+
+.mat-sidenav-container {
+  height: 100%;
+}
+
+.mat-sidenav {
+  @include header-elements;
+  position: absolute;
+  top: 78px;
+  color: mat-color($rijks, 200);
+  background-color: mat-color($rijks, 500);
+}
+
+.mat-list-base {
+  padding: 8px
+}
+
+.header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  overflow:hidden;
+  z-index: 2;
+  height: 78px;
+  @include md {
+    height: 200px;
+  }
+}
+
+.header.mat-toolbar {
+  border-bottom: 2px solid mat-color($accent, 300) !important;
+}
+
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  background: mat-color($rijks, 500);
+  position: absolute;
+  top: 78px;
+  bottom: 0;
+  padding: 20px;
+  overflow: scroll;
+  @include md {
+    top: 200px;
+  }
+}
+
+.settings-button {
+  color: mat-color($accent, 400);
+  opacity: .6;
+  height: 48px !important;
+  line-height: 0;
 }

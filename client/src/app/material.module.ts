@@ -6,11 +6,9 @@ import {
   MatCardModule, MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule,
-  MatProgressSpinnerModule
+  MatInputModule, MatListModule,
+  MatProgressSpinnerModule, MatSidenavModule
 } from "@angular/material";
-import {MaterialFileInputModule} from "ngx-material-file-input";
-import {ImageUploadModule} from "ng2-imageupload";
 import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
@@ -23,11 +21,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
-    MaterialFileInputModule,
     MatButtonModule,
-    ImageUploadModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatListModule
   ],
   exports: [
     MatTabsModule,
@@ -38,11 +37,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
-    MaterialFileInputModule,
     MatButtonModule,
-    ImageUploadModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatListModule
   ]
 })
 export class MaterialModule {

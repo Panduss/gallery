@@ -1,5 +1,5 @@
 import {Collection} from "fireorm";
-import {IsEnum, IsString} from "class-validator";
+import {IsEnum, IsObject, IsString} from "class-validator";
 import {TabType} from "./tabType";
 
 @Collection("pages")
@@ -8,7 +8,7 @@ export class Page {
     @IsString()
     public id: string;
 
-    @IsEnum(TabType, )
+    @IsEnum(TabType)
     public type: TabType;
 
     @IsString()
@@ -16,5 +16,8 @@ export class Page {
 
     @IsString()
     public subtitle?: string;
+
+    @IsObject()
+    public data?: object
 
 }

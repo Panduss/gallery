@@ -1,9 +1,126 @@
+
 @import '~@angular/material/theming';
+
+@at-root {
+  @font-face {
+    font-family: 'Nunito';
+    src: url('src/assets/font/Nunito-Bold.eot');
+    src: url('src/assets/font/Nunito-Bold.eot?#iefix') format('embedded-opentype'),
+    url('src/assets/font/Nunito-Bold.woff2') format('woff2'),
+    url('src/assets/font/Nunito-Bold.woff') format('woff'),
+    url('src/assets/font/Nunito-Bold.ttf') format('truetype'),
+    url('src/assets/font/Nunito-Bold.svg#Nunito-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nunito';
+    src: url('src/assets/font/Nunito-Regular.eot');
+    src: url('src/assets/font/Nunito-Regular.eot?#iefix') format('embedded-opentype'),
+    url('src/assets/font/Nunito-Regular.woff2') format('woff2'),
+    url('src/assets/font/Nunito-Regular.woff') format('woff'),
+    url('src/assets/font/Nunito-Regular.ttf') format('truetype'),
+    url('src/assets/font/Nunito-Regular.svg#Nunito-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Nunito, monospace',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+// Be sure that you only ever include 'mat-core' mixin once!
+// it should not be included for each theme.
 @include mat-core();
 
-$primary: mat-palette($mat-blue,200);
-$accent: mat-palette($mat-orange,200);
+$rijks: (
+  50 : #eaeced,
+  100 : #cbcfd3,
+  200 : #a8afb6,
+  300 : #858f99,
+  400 : #6a7783,
+  500 : #505f6d,
+  600 : #495765,
+  700 : #404d5a,
+  800 : #374350,
+  900 : #27323e,
+  A100 : #89c1ff,
+  A200 : #56a6ff,
+  A400 : #238cff,
+  A700 : #097eff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
 
-$theme: mat-light-theme($primary, $accent);
+$accent: (
+  50 : #fcf9fb,
+  100 : #f9f1f5,
+  200 : #f5e8ee,
+  300 : #f0dfe7,
+  400 : #edd8e1,
+  500 : #ead1dc,
+  600 : #e7ccd8,
+  700 : #e4c6d3,
+  800 : #e1c0ce,
+  900 : #dbb5c5,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #ffffff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
 
-@include angular-material-theme($theme);
+$screen-md-min: 600px;
+
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+$custom-palette-primary: mat-palette($rijks);
+$custom-palette-accent:  mat-palette($accent);
+
+$primary: mat-palette($rijks, 800, 500, 900);
+$accent:  mat-palette($accent, A200, A100, A400);
+$warn: mat-palette($mat-red);
+
+$custom-theme: mat-light-theme($custom-palette-primary, $custom-palette-accent);
+
+@include mat-core($custom-typography);
+@include angular-material-theme($custom-theme);
