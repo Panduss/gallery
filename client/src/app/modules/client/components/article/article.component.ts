@@ -57,7 +57,9 @@ export class ArticleComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalComponent, {
       data: image,
       hasBackdrop: true,
-      panelClass: "modal"
+      panelClass: "modal",
+      maxWidth: "80%",
+      maxHeight: "80%"
     });
 
     dialogRef.afterClosed().subscribe();

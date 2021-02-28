@@ -68,7 +68,7 @@
 
     <div class="content">
       <div fxLayout="row wrap" fxLayoutGap="25px grid">
-        <div fxFlex.gt-md="25%" fxFlex="33%" fxFlex.sm="50%" fxFlex.xs="100%"  *ngFor="let image of images">
+        <div fxFlex.gt-md="25%" fxFlex="33%" fxFlex.sm="50%" fxFlex.xs="100%" fxLayoutAlign="center center" *ngFor="let image of images">
           <img
             (click)="openModal(image)"
             class="image"
