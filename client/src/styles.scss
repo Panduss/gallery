@@ -4,14 +4,6 @@
 html, body { height: 100%; background: mat-color($primary, 500) }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.container {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .card {
   min-width: 150px;
   max-width: 500px;

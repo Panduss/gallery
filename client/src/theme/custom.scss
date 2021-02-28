@@ -105,7 +105,14 @@ $accent: (
   )
 );
 
-// mandatory stuff for theming
+$screen-md-min: 600px;
+
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
 $custom-palette-primary: mat-palette($rijks);
 $custom-palette-accent:  mat-palette($accent);
 
