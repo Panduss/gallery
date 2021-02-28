@@ -26,6 +26,18 @@ body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
   height: 100%;
 }
 
+.mat-sidenav {
+  @include header-elements;
+  position: absolute;
+  top: 78px;
+  color: mat-color($rijks, 200);
+  background-color: mat-color($rijks, 500);
+}
+
+.mat-list-base {
+  padding: 8px
+}
+
 .header {
   padding: 10px;
   display: flex;
