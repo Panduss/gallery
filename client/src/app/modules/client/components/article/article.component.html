@@ -38,39 +38,37 @@
         <img [src]="imageSrc" alt="preview">
       </mat-card>
     </div>
-    <div>
-      <!--      <div class="container">-->
-      <!--        <div><mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner></div>-->
-      <!--        <div *ngIf="(page$|async) && (page$|async).subtitle">-->
-      <!--          {{(page$|async).subtitle}}-->
-      <!--        </div>-->
-      <!--      </div>-->
-    </div>
-    <!--    <div class="content" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">-->
-    <!--      <div *ngFor="let image of images"  fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-sm="100%">-->
-    <!--        <img (click)="openModal(image)" class="image" [src]='image.url' [alt]="image.title"/>-->
-    <!--      </div>-->
+
+    <!--    <div>-->
+    <!--      <mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner>-->
     <!--    </div>-->
 
-<!--    <div class="content">-->
-<!--      <div *ngFor="let image of images" fxLayout="row wrap">-->
-<!--        <div fxFlex="25%">-->
-<!--          <img-->
-<!--            (click)="openModal(image)"-->
-<!--            class="image"-->
-<!--            [src]='image.url'-->
-<!--            [alt]="image.title"-->
-<!--          />-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-
     <div class="content">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div
+          class="infoCard"
+          fxFlex.sm="50%" fxFlex.xs="100%"
+          *ngIf="(page$|async) && (page$|async).subtitle"
+        >
+          <div [style.margin-top]="'20px'">
+              {{(page$|async).subtitle}}
+          </div>
+          <div
+            [style.margin-top]="'20px'"
+            *ngIf="(page$|async) && (page$|async).data && (page$|async).data.email">
+            <a mat-raised-button color="accent"
+               [href]="'mailto:'+(page$|async).data.email">
+              <mat-icon>alternate_email</mat-icon>
+              Stuur een email
+            </a>
+          </div>
+        </div>
+      </div>
       <div fxLayout="row wrap" fxLayoutGap="25px grid">
-        <div fxFlex.gt-md="25%" fxFlex="33%" fxFlex.sm="50%" fxFlex.xs="100%" fxLayoutAlign="center center" *ngFor="let image of images">
+        <div [style.margin-top]="'20px'" fxFlex.gt-md="25%" fxFlex="33%" fxFlex.sm="50%" fxFlex.xs="100%"
+             fxLayoutAlign="center center"
+             *ngFor="let image of images">
           <img
-            (click)="openModal(image)"
             class="image"
             [src]='image.url'
             [alt]="image.title"
@@ -80,3 +78,5 @@
     </div>
   </div>
 </div>
+
+<!--(click)="openModal(image)"-->

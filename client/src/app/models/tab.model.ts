@@ -5,4 +5,8 @@ export interface Tab {
   title: string;
   subtitle: string;
   type: TabType;
+  data?: {
+    email: string;
+    name: string
+  };
 }
