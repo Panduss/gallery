@@ -23,7 +23,6 @@
 <mat-sidenav-container fxFlexFill>
   <mat-sidenav #sidenav>
     <mat-nav-list>
-      <a (click)="sidenav.toggle()" mat-list-item>Close</a>
       <div *ngFor="let tab of tabs">
         <a
           [routerLink]='"/article/"+tab.id'
@@ -32,9 +31,6 @@
           (click)="sidenav.toggle()"
         >{{tab.title}}</a>
       </div>
-      <button mat-button class="settings-button" routerLink="/settings" (click)="sidenav.toggle()">
-        <mat-icon aria-hidden="false" aria-label="Settings icon">settings</mat-icon>
-      </button>
     </mat-nav-list>
   </mat-sidenav>
   <div class="content">
