@@ -1,5 +1,6 @@
-body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
 @import "../../../../../theme/custom";
+
+body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
 
 @mixin header-elements {
   min-width: 200px !important;
@@ -8,7 +9,7 @@ body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
   font-size: x-large;
 }
 
-.mat-tab-nav-bar,
+.mat-toolbar,
 .mat-tab-link-active,
 .mat-tab-link,
 .mat-tab-label {
@@ -21,31 +22,47 @@ body { padding: 10px; font-family: Nunito, "Helvetica Neue", sans-serif; }
   color: mat-color($accent, 50)
 }
 
+.mat-sidenav-container {
+  height: 100%;
+}
+
 .header {
   padding: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: flex-end;
   position: fixed;
   top:0;
   left:0;
   right:0;
-  height:200px;
   overflow:hidden;
-  z-index: 1;
-}
-
-.content {
-  position:absolute;
-  top:200px;
-  left:0;
-  right:0;
-  overflow:auto;
+  z-index: 2;
+  height: 78px;
+  @include md {
+    height: 200px;
+  }
 }
 
 .header.mat-toolbar {
   border-bottom: 2px solid mat-color($accent, 300) !important;
+}
+
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  background: mat-color($rijks, 500);
+  position: absolute;
+  top: 78px;
+  bottom: 0;
+  padding: 20px;
+  overflow: scroll;
+  @include md {
+    top: 200px;
+  }
 }
 
 .settings-button {

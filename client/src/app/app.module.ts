@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {StorageProvider} from "./providers/storage.provider";
 import {HeaderInterceptor} from "./interceptors/header.interceptor";
 import {ModalComponent} from "./modules/client/components/modal/modal.component";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {ModalComponent} from "./modules/client/components/modal/modal.component"
     HttpClientModule,
     AppRoutingModule,
     HomeModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [
     StorageProvider,

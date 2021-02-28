@@ -1,44 +1,43 @@
-<mat-toolbar class="header" color="primary">
-  <nav mat-tab-nav-bar>
-    <a mat-tab-link
-       *ngFor="let tab of tabs"
-       [routerLink]='"/article/"+tab.id'
-       [state]="{data: tab}"
-       routerLinkActive #rla="routerLinkActive"
-       [active]="rla.isActive">
-      {{tab.title}}
-    </a>
-  </nav>
-  <button mat-button class="settings-button" routerLink="/settings">
-    <mat-icon aria-hidden="false" aria-label="Settings icon">settings</mat-icon>
-  </button>
+<mat-toolbar color="primary" class="header">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-xs>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="menu-spacer"></span>
+    <nav mat-tab-nav-bar fxShow="true" fxHide.lt-sm>
+      <a mat-tab-link
+         *ngFor="let tab of tabs"
+         [routerLink]='"/article/"+tab.id'
+         [state]="{data: tab}"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        {{tab.title}}
+      </a>
+      <button mat-button class="settings-button" routerLink="/settings">
+        <mat-icon aria-hidden="false" aria-label="Settings icon">settings</mat-icon>
+      </button>
+    </nav>
+  </mat-toolbar-row>
 </mat-toolbar>
 
-<!--<div style="height:200px">-->
-<!--  <mat-toolbar color="primary">-->
-<!--    <mat-toolbar-row>-->
-<!--      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>-->
-<!--        <mat-icon>menu</mat-icon>-->
-<!--      </button>-->
-<!--      <span>Responsive Navigation</span>-->
-<!--      <span class="menu-spacer"></span>-->
-<!--      <div fxShow="true" fxHide.lt-md>-->
-<!--        <a *ngFor="let tab of tabs" [routerLink]='"/article/"+tab.id' [state]="{data: tab}" routerLinkActive='is-active'>{{tab.title}}</a>-->
-<!--      </div>-->
-<!--    </mat-toolbar-row>-->
-<!--  </mat-toolbar>-->
-
-<!--  <mat-sidenav-container fxFlexFill>-->
-<!--    <mat-sidenav #sidenav>-->
-<!--      <mat-nav-list>-->
-<!--        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>-->
-<!--        <a *ngFor="let tab of tabs" [routerLink]='"/article/"+tab.id' [state]="{data: tab}" routerLinkActive='is-active'>{{tab.title}}</a>-->
-<!--      </mat-nav-list>-->
-<!--    </mat-sidenav>-->
-<!--  </mat-sidenav-container>-->
-<!--</div>-->
-
-<div class="content">
-  <router-outlet></router-outlet>
-
-</div>
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a (click)="sidenav.toggle()" mat-list-item>Close</a>
+      <div *ngFor="let tab of tabs">
+        <a
+          [routerLink]='"/article/"+tab.id'
+          [state]="{data: tab}"
+          routerLinkActive='is-active'
+          (click)="sidenav.toggle()"
+        >{{tab.title}}</a>
+      </div>
+      <button mat-button class="settings-button" routerLink="/settings" (click)="sidenav.toggle()">
+        <mat-icon aria-hidden="false" aria-label="Settings icon">settings</mat-icon>
+      </button>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

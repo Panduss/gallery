@@ -1,10 +1,14 @@
 .image {
-  margin: 10px;
   transition: all 2s;
-  float: left;
-  width:  400px;
-  height: 400px;
+  max-height: 100%;
+  max-width: 100%;
   object-fit: cover;
+}
+.imageContainer {
+  float: left;
+  margin: 10px;
+  width:  90%;
+  height: 400px;
 }
 img:hover {
   transform: scale(1.1);

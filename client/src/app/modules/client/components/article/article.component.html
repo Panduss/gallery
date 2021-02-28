@@ -1,5 +1,4 @@
-
-<div class="container">
+<div>
   <div>
     <div *ngIf="(authUser$|async)">
       <h2>Add Gallery</h2>
@@ -7,7 +6,7 @@
         <form [formGroup]="galleryForm" (ngSubmit)="onFormSubmit()">
           <mat-form-field class="full-width">
             <mat-label>Gallery Image</mat-label>
-            <ngx-mat-file-input formControlName="file" (change)="onFileChange($event)" placeholder="Select Image" valuePlaceholder="No image file selected"></ngx-mat-file-input>
+            <!--            <ngx-mat-file-input formControlName="file" (change)="onFileChange($event)" placeholder="Select Image" valuePlaceholder="No image file selected"></ngx-mat-file-input>-->
             <mat-icon matSuffix>folder</mat-icon>
             <mat-error>
               <span *ngIf="!galleryForm.get('file').valid">Please select image file</span>
@@ -17,7 +16,8 @@
             <mat-label>Image Name</mat-label>
             <label><input matInput placeholder="Image Name" formControlName="title"></label>
             <mat-error>
-              <span *ngIf="!galleryForm.get('title').valid && galleryForm.get('title').touched">Please enter Image Name</span>
+              <span
+                *ngIf="!galleryForm.get('title').valid && galleryForm.get('title').touched">Please enter Image Name</span>
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
@@ -28,25 +28,54 @@
             </mat-error>
           </mat-form-field>
           <div class="button-row">
-            <button type="submit" mat-flat-button color="primary"><mat-icon>upgrade</mat-icon></button>
+            <button type="submit" mat-flat-button color="primary">
+              <mat-icon>upgrade</mat-icon>
+            </button>
           </div>
         </form>
       </mat-card>
       <mat-card *ngIf="imageSrc">
-        <img [src]="imageSrc" style="height: 500px; width:500px" alt="preview">
+        <img [src]="imageSrc" alt="preview">
       </mat-card>
     </div>
     <div>
-      <div class="container">
-        <div><mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner></div>
-        <div *ngIf="(page$|async) && (page$|async).subtitle">
-          {{(page$|async).subtitle}}
-        </div>
-      </div>
+      <!--      <div class="container">-->
+      <!--        <div><mat-spinner *ngIf="loading && !images" color="secondary"></mat-spinner></div>-->
+      <!--        <div *ngIf="(page$|async) && (page$|async).subtitle">-->
+      <!--          {{(page$|async).subtitle}}-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
-    <div class='container'>
-      <div *ngFor="let image of images" >
-        <img (click)="openModal(image)" class="image" [src]='image.url' [alt]="image.title"/>
+    <!--    <div class="content" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">-->
+    <!--      <div *ngFor="let image of images"  fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-sm="100%">-->
+    <!--        <img (click)="openModal(image)" class="image" [src]='image.url' [alt]="image.title"/>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+<!--    <div class="content">-->
+<!--      <div *ngFor="let image of images" fxLayout="row wrap">-->
+<!--        <div fxFlex="25%">-->
+<!--          <img-->
+<!--            (click)="openModal(image)"-->
+<!--            class="image"-->
+<!--            [src]='image.url'-->
+<!--            [alt]="image.title"-->
+<!--          />-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+    <div class="content">
+      <div fxLayout="row wrap" fxLayoutGap="25px grid">
+        <div fxFlex.gt-md="25%" fxFlex="33%" fxFlex.sm="50%" fxFlex.xs="100%"  *ngFor="let image of images">
+          <img
+            (click)="openModal(image)"
+            class="image"
+            [src]='image.url'
+            [alt]="image.title"
+          />
+        </div>
       </div>
     </div>
   </div>
